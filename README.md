@@ -2,6 +2,27 @@
 
 Basic boilerplate for building a secure backend in node.js, express, mongodb using JWOT access and refresh tokens.
 
+### Build
+
+```sh
+docker-compose build
+
+```
+
+### Run
+
+```sh
+docker-compose up
+
+```
+
+### Test
+
+```sh
+chmod +x ./requestBackend.sh && ./requestBackend.sh
+
+```
+
 ## Todo
 
 - Add Schema Validation
