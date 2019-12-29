@@ -11,7 +11,7 @@ require("dotenv").config();
 
 // Instantiating the express-jwt middleware
 const jwtMW = exjwt({
-  secret: process.env.SECRET_KEY
+  secret: process.env.ACCESS_TOKEN_SECRET
 });
 
 mongoose
@@ -23,7 +23,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/", jwtMW /* Using the express jwt MW here */, (req, res) => {
-  res.send("You are authenticated"); //Sending some response when authenticated
+  res.json({
+    success: true,
+    error: null,
+    message: "You are authenticated"
+  }); //Sending some response when authenticated
 });
 app.use("/", routes);
 

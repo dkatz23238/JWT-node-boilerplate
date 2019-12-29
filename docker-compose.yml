@@ -9,7 +9,11 @@ services:
       - "8080:8080"
     depends_on:
       - mongodb
-
+    environment:
+      - ACCESS_TOKEN_SECRET=${ACCESS_TOKEN_SECRET}
+      - REFRESH_TOKEN_SECRET=${REFRESH_TOKEN_SECRET}
+      - MONGO_URI=${MONGO_URI}
+      - PORT=${PORT}
   mongodb:
     image: "bitnami/mongodb:4.0"
     ports:

@@ -1,2 +1,2 @@
-sleep 15;
+sleep 8;
 node server.js;

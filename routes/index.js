@@ -1,14 +1,18 @@
 const express = require("express");
-const bodyParser = require("body-parser");
-const app = express();
-const jwt = require("jsonwebtoken");
-const exjwt = require("express-jwt");
-const bcrypt = require("bcrypt");
 
 const router = express.Router();
 const controllers = require("../controllers");
 
+// Handle User Login
 router.post("/login", controllers.postUserLogin);
+
+// Handle User Sign Up
 router.post("/signup", controllers.postSignUpUser);
+
+// Handle Refresh Tokens
+router.post("/tokens", controllers.postToken);
+
+// Handle Refresh Tokens
+router.post("/logout", controllers.postLogout);
 
 module.exports = router;
