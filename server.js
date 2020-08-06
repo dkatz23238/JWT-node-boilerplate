@@ -6,6 +6,8 @@ const jwt = require("jsonwebtoken");
 const exjwt = require("express-jwt");
 const bcrypt = require("bcrypt");
 const mongoose = require("mongoose");
+const errorHandler = require('./_helpers/error-handler');
+
 
 require("dotenv").config();
 
@@ -32,14 +34,8 @@ app.get("/", jwtMW /* Using the express jwt MW here */, (req, res) => {
 app.use("/", routes);
 
 // Error handling
-app.use(function(err, req, res, next) {
-  if (err.name === "UnauthorizedError") {
-    // Send the error rather than to show it on the console
-    res.status(401).send(err);
-  } else {
-    next(err);
-  }
-});
+app.use(errorHandler);
+
 
 app.listen(process.env.PORT, () =>
   console.log(`Example app listening on port ${process.env.PORT}!`)

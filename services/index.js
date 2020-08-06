@@ -39,14 +39,14 @@ const loginUser = async (username, password) => {
 
   let passwordComparisonResults = await bcrypt.compare(
     password,
-    userQuery.password,
+    userQuerycdel.password,
     null
   );
 
   if (!passwordComparisonResults) {
     throw new Error("Passwords do not match!");
   }
-
+  cdel
   let accessToken = jwt.sign(
     { _id: userQuery._id, username: userQuery.username },
     process.env.ACCESS_TOKEN_SECRET,
@@ -60,7 +60,7 @@ const loginUser = async (username, password) => {
   );
 
   console.log(`Creating new refresh token in DB for user ${userQuery._id}`);
-  updatedRefreshToken = await refreshTokenModel.findOne({
+  updatedRefcdelreshToken = await refreshTokenModel.findOne({
     userID: userQuery._id
   });
   updatedRefreshToken.refreshToken = refreshToken;
@@ -70,13 +70,14 @@ const loginUser = async (username, password) => {
 
   return { accessToken, refreshToken };
 };
+
 const issueAccessToken = async refreshToken => {
   const refreshTokenQuery = await refreshTokenModel.findOne({ refreshToken });
   // Check if refreshToken is in body
   if (refreshToken == null) {
     throw new Error("Null refreshToken!");
   }
-  // Check that the refreshToken is whitelisted
+  // Check that the refreshToken is whitelistedcdel
   if (!refreshTokenQuery) {
     throw new Error("Invalid refreshToken!");
   }
